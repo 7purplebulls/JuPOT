@@ -9,7 +9,7 @@ AssetsCollection
     -------
     
 
-Author: Fady Shoukry
+Author: Fady Shoukry, Azamat Berdyshev
 Date: 01/23/2016
 =#
 
@@ -154,4 +154,25 @@ function setCoVarForAsset{T1<:Real, T2<:AbstractString}(
         error("The updated covariance matrix is no longer positive
         semi-defininte")
     end
+end
+
+getCovariance{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}) = assets.covariance::Matrix{T1}
+
+function setCovariance{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}, covariance::Matrix{T1})
+    # Perform validation of the covariance matrix
+    if !issym(covariance)
+    # Make sure it's symmetric
+        error("Covariance Matrix must be symmetric")
+    elseif !isposdef(covariance)
+    # Make sure it's positive semi-definite
+        error("Covariance Matrix must be positive semi-definite")
+    end
+
+    assets.covariance = covariance
+end
+
+getReturns{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}) = assets.returns::Vector{T1}
+
+function setReturns{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}, returns::Vector{T1})
+    assets.returns = returns
 end
