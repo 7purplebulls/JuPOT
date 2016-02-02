@@ -1,3 +1,13 @@
+#=
+SimpleMVO
+=========
+    Mean-Variance Optimization Model
+
+
+Author: Azamat Berdyshev
+Date: 01/30/2016
+=#
+
 type SimpleMVO <: AbstractModel
     sense::Symbol
     vars::Vector{Expr}
@@ -7,9 +17,9 @@ type SimpleMVO <: AbstractModel
     assets::AssetsCollection
 
     # Constructor
-    function SimpleMVO{T1<:Real, T2<:AbstractString}(
-                        assets::AssetsCollection{T1, T2},
-                        r_min::Float64,
+    function SimpleMVO{R<:Real, S<:AbstractString}(
+                        assets::AssetsCollection{R, S},
+                        r_min::R,
                         constraints=Dict{Symbol,Expr}()::Dict{Symbol,Expr},
                         short_sale=false::Bool)
 
@@ -25,7 +35,7 @@ type SimpleMVO <: AbstractModel
         end
 
         _objective = :(dot(w,$Σ*w))
-        
+
         _default_constraints = [:(dot($μ,w) ≥ $r_min), :(dot(ones($n),w) == 1)]
 
         new(:Min,
@@ -36,4 +46,3 @@ type SimpleMVO <: AbstractModel
             assets)
     end
 end
-
