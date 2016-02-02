@@ -24,8 +24,8 @@ type SimpleMVO <: AbstractModel
                         short_sale=false::Bool)
 
         n = length(assets)
-        Σ = assets.covariance
-        μ = assets.returns
+        Σ = getCovariance(assets)
+        μ = getReturns(assets)
 
         # if no short sale => add corresponding constraint
         if short_sale
