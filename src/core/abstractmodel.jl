@@ -70,7 +70,12 @@ function optimize{T<:Any}(m::AbstractModel, syms_dict::Dict{Symbol}{T}, solver=J
     modelGen = createJuMPModelGenFunc(vars, sense, objective, constraints)
     JuMPModel = modelGen(solver)
     # Once the constraints are added, and the objective is set, solve the model
-    JuMP.solve(JuMPModel)
+    m.status = JuMP.solve(JuMPModel)
 
     # Report the status and the solution
+    m.objVal = JuMP.getObjVal(m)
+    m.weights = JuMP.getVal(m, :w)
+
+    # return the weights
+    m.weights
 end

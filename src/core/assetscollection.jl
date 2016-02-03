@@ -149,6 +149,7 @@ function setCoVarForAsset{T1<:Real, T2<:AbstractString}(
         error("The asset collection has no asset named $asset2")
     end
     assets.covariance[idx_1, idx_2] = value
+    assets.covariance[idx_2, idx_1] = value
     # Check to see if the positive semi-definitiveness has been violated
     if !isposdef(assets.covariance)
         error("The updated covariance matrix is no longer positive
@@ -160,7 +161,11 @@ getCovariance{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}) = 
 
 function setCovariance{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}, covariance::Matrix{T1})
     # Perform validation of the covariance matrix
-    if !issym(covariance)
+    n = length(assets)
+    if n != size(covariance, 1)
+        # Make sure it's the correct size
+        error("Covariance Matrix must have size $n x $n")
+    elseif !issym(covariance)
     # Make sure it's symmetric
         error("Covariance Matrix must be symmetric")
     elseif !isposdef(covariance)

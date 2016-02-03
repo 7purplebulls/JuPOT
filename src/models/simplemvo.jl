@@ -15,6 +15,9 @@ type SimpleMVO <: AbstractModel
     _default_constraints::Vector{Expr}
     constraints::Dict{Symbol,Expr}
     assets::AssetsCollection
+    objVal::Real
+    weights::Vector{Real}
+    status::Symbol
 
     # Constructor
     function SimpleMVO{R<:Real, S<:AbstractString}(
