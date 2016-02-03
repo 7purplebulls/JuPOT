@@ -74,7 +74,7 @@ function optimize{T<:Any}(m::AbstractModel, syms_dict::Dict{Symbol}{T}, solver=J
 
     # Report the status and the solution
     m.objVal = JuMP.getObjectiveValue(JuMPModel)
-    m.weights = JuMP.getValue(w)
+    m.weights = JuMP.getValue(getVar(JuMPModel, :w))
 
     # return the weights
     m.weights
