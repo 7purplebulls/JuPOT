@@ -8,7 +8,7 @@ Author: Azamat Berdyshev
 Date: 02/03/2016
 =#
 
-type RobustMVO{R<:Real, S<:AbstractString}
+type RobustMVO{R<:Real, S<:AbstractString} <: AbstractModel
     sense::Symbol
     vars::Vector{Expr}
     _objective::Expr
