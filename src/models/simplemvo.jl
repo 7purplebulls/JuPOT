@@ -48,9 +48,24 @@ type SimpleMVO <: AbstractModel
             constraints,
             assets)
     end
+end
 
-    function Base.show(io::IO, m::SimpleMVO)
-        print(io, "Assets: \n $(m.assets) \n Constraints: \n $(m.constraints) \n")
+function Base.show(io::IO, m::SimpleMVO)
+    print(io, "\n Sense: $(m.sense) \n")
+    print(io, "\n Variables: \n")
+    for vars in m.vars
+        print(io, vars, "\n")
     end
-    
+
+    print(io, "\n Objective Function: \n  $(m._objective) \n")
+
+    print(io, "\n Constraints: \n")
+    for cons in m._default_constraints
+          print(io, cons, "\n")
+    end
+    for (key2,value2) in m.constraints
+          print(io, key2, " ==> ", value2, "\n")
+    end
+
+    print(io, "\n Assets: \n $(m.assets) \n")
 end
