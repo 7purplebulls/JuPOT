@@ -8,7 +8,7 @@ Author: Azamat Berdyshev
 Date: 01/30/2016
 =#
 
-type SimpleMVO{R<:Real, S<:AbstractString}
+type SimpleMVO{R<:Real, S<:AbstractString} <: AbstractModel
     sense::Symbol
     vars::Vector{Expr}
     _objective::Expr
