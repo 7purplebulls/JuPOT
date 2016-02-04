@@ -48,4 +48,9 @@ type SimpleMVO <: AbstractModel
             constraints,
             assets)
     end
+
+    function Base.show(io::IO, m::SimpleMVO)
+        print(io, "Assets: \n $(m.assets) \n Constraints: \n $(m.constraints) \n")
+    end
+    
 end
