@@ -8,23 +8,22 @@ Author: Azamat Berdyshev
 Date: 01/30/2016
 =#
 
-type SimpleMVO <: AbstractModel
+type SimpleMVO{R<:Real, S<:AbstractString}
     sense::Symbol
     vars::Vector{Expr}
     _objective::Expr
     _default_constraints::Vector{Expr}
     constraints::Dict{Symbol,Expr}
-    assets::AssetsCollection
-    objVal::Real
-    weights::Vector{Real}
+    assets::AssetsCollection{R,S}
+    objVal::R
+    weights::Vector{R}
     status::Symbol
 
-    # Constructor
-    function SimpleMVO{R<:Real, S<:AbstractString}(
-                        assets::AssetsCollection{R, S},
+    # Inner constructor
+    function SimpleMVO(assets::AssetsCollection{R, S},
                         r_min::R,
-                        constraints=Dict{Symbol,Expr}()::Dict{Symbol,Expr},
-                        short_sale=false::Bool)
+                        constraints::Dict{Symbol,Expr},
+                        short_sale::Bool)
 
         n = length(assets)
         Σ = getCovariance(assets)
@@ -46,26 +45,20 @@ type SimpleMVO <: AbstractModel
             _objective,
             _default_constraints,
             constraints,
-            assets)
+            assets,
+            NaN,
+            fill(NaN,n),
+            :Unsolved)
     end
 end
 
-function Base.show(io::IO, m::SimpleMVO)
-    print(io, "\n Sense: $(m.sense) \n")
-    print(io, "\n Variables: \n")
-    for vars in m.vars
-        print(io, vars, "\n")
-    end
-
-    print(io, "\n Objective Function: \n  $(m._objective) \n")
-
-    print(io, "\n Constraints: \n")
-    for cons in m._default_constraints
-          print(io, cons, "\n")
-    end
-    for (key2,value2) in m.constraints
-          print(io, key2, " ==> ", value2, "\n")
-    end
-
-    print(io, "\n Assets: \n $(m.assets) \n")
-end
+# Outer constructor
+SimpleMVO{R<:Real, S<:AbstractString}(
+            assets::AssetsCollection{R, S},
+            r_min::R,
+            constraints=Dict{Symbol,Expr}()::Dict{Symbol,Expr};
+            short_sale=false::Bool) = SimpleMVO{R, S}(
+                                                assets,
+                                                r_min,
+                                                constraints,
+                                                short_sale)
