@@ -3,7 +3,7 @@ module JuPOT
 import JuMP
 # We extend length so it needs to be imported
 import Base.length
-export AbstractModel, optimize, AssetsCollection, SimpleMVO
+export AbstractModel, optimize, AssetsCollection, SimpleMVO, RobustMVO
 
 include("core/utils.jl")
 include("core/assetscollection.jl")
