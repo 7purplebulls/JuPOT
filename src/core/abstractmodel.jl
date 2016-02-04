@@ -53,13 +53,15 @@ function getVariables(m::AbstractModel)
     m.vars
 end
 
-function optimize{T<:Any}(m::AbstractModel, syms_dict::Dict{Symbol}{T}, solver=JuMP.UnsetSolver())
+function optimize{T<:Any}(m::AbstractModel, syms_dict::Dict{Symbol}{T}=Dict{Symbol}{Any}(), solver=JuMP.UnsetSolver())
     """
     Return the optimized weights of the model generated as an array of floats
     """
     # First we replace all symbols in the constraints with their values
     constraints = getConstraints(m)
     symReplaceAll!(constraints, syms_dict)
+    # end
+
     # Get all the variables of the model
     vars = getVariables(m)
     # Extract the objective function and the sense

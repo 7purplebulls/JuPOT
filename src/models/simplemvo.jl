@@ -22,8 +22,8 @@ type SimpleMVO{R<:Real, S<:AbstractString} <: AbstractModel
     # Inner constructor
     function SimpleMVO(assets::AssetsCollection{R, S},
                         r_min::R,
-                        constraints::Dict{Symbol,Expr},
-                        short_sale::Bool)
+                        constraints::Dict{Symbol,Expr}=Dict{Symbol,Expr}(),
+                        short_sale::Bool=false)
 
         n = length(assets)
         Σ = getCovariance(assets)
@@ -51,6 +51,26 @@ type SimpleMVO{R<:Real, S<:AbstractString} <: AbstractModel
             fill(NaN,n),
             :Unsolved)
     end
+end
+
+function Base.show(io::IO, m::SimpleMVO)
+    print(io, "\n Sense: $(m.sense) \n")
+    print(io, "\n Variables: \n")
+    for vars in m.vars
+        print(io, vars, "\n")
+    end
+
+    print(io, "\n Objective Function: \n  $(m._objective) \n")
+
+    print(io, "\n Constraints: \n")
+    for cons in m._default_constraints
+          print(io, cons, "\n")
+    end
+    for (key2,value2) in m.constraints
+          print(io, key2, " ==> ", value2, "\n")
+    end
+
+    print(io, "\n Assets: \n $(m.assets) \n")
 end
 
 # Outer constructor
