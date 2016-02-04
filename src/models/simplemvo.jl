@@ -38,7 +38,8 @@ type SimpleMVO{R<:Real, S<:AbstractString}
 
         _objective = :(dot(w,$Σ*w))
 
-        _default_constraints = [:(dot($μ,w) ≥ $r_min), :(dot(ones($n),w) == 1)]
+        _default_constraints = [:(dot($μ,w) ≥ $r_min),
+                                :(dot(ones($n),w) == 1)]
 
         new(:Min,
             vars,
