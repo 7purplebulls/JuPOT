@@ -181,3 +181,10 @@ getReturns{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}) = ass
 function setReturns{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}, returns::Vector{T1})
     assets.returns = returns
 end
+
+
+function Base.show(io::IO, a::AssetsCollection)
+    for i in 1:length(a.names)
+        print(io, "$(a.names[i])    $(a.returns[i]) \n")
+    end
+end
