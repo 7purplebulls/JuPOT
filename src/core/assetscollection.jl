@@ -183,7 +183,14 @@ function setReturns{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T
 end
 
 function Base.show(io::IO, a::AssetsCollection)
-    for i in 1:length(a.names)
-        print(io, "$(a.names[i])    $(a.returns[i]) \n")
+
+    a_length = length(a.names)
+    a_df = DataFrames.DataFrame(A = AbstractString[], B = Real[])
+
+    for i = 1:a_length
+        push!(a_df, [a.names[i], a.returns[i]])
     end
+
+    print(io, a_df)
+
 end
