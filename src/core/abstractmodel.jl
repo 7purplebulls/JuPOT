@@ -54,6 +54,7 @@ function getVariables(m::AbstractModel)
 end
 
 function optimize(m::AbstractModel, syms_dict=Dict{Symbol,Any}()::Dict, solver=JuMP.UnsetSolver())
+    #TODO: Make this Parametrized?
     """
     Return the optimized weights of the model generated as an array of floats
     """
