@@ -192,5 +192,9 @@ function Base.show(io::IO, a::AssetsCollection)
     end
 
     print(io, a_df)
+end
 
+function getAssetAndReturnsFromCSV(filepath::AbstractString)
+    asset_table = DataFrames.readtable(filepath, header=false)
+    return convert(Vector{AbstractString}, asset_table[1]), convert(Vector{Float64}, asset_table[2])
 end
