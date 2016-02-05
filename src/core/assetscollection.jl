@@ -113,11 +113,11 @@ function setVarForAsset{T1<:Real, T2<:AbstractString}(
     # Check to see if the positive semi-definitiveness has been violated
     if !isposdef(assets.covariance)
         error("The updated covariance matrix is no longer positive
-        semi-defininte")
+        semi-definite")
     end
 end
 
-function getCoVarForAssets{T1<:Real, T2<:AbstractString}(
+function getCoVarForAssetPair{T1<:Real, T2<:AbstractString}(
     assets::AssetsCollection{T1, T2}, asset1::AbstractString,
     asset2::AbstractString)
     """
@@ -133,7 +133,7 @@ function getCoVarForAssets{T1<:Real, T2<:AbstractString}(
     assets.covariance[idx_1, idx_2]
 end
 
-function setCoVarForAsset{T1<:Real, T2<:AbstractString}(
+function setCoVarForAssetPair{T1<:Real, T2<:AbstractString}(
     assets::AssetsCollection{T1, T2}, asset1::AbstractString,
     asset2::AbstractString, value)
     """
@@ -153,7 +153,7 @@ function setCoVarForAsset{T1<:Real, T2<:AbstractString}(
     # Check to see if the positive semi-definitiveness has been violated
     if !isposdef(assets.covariance)
         error("The updated covariance matrix is no longer positive
-        semi-defininte")
+        semi-definite")
     end
 end
 

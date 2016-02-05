@@ -57,19 +57,14 @@ function optimize(m::AbstractModel, syms_dict=Dict{Symbol,Any}()::Dict, solver=J
     """
     Return the optimized weights of the model generated as an array of floats
     """
-    # First we replace all symbols in the constraints with their values
     constraints = getConstraints(m)
-    symReplaceAll!(constraints, syms_dict)
-    # end
 
-    # Get all the variables of the model
     vars = getVariables(m)
-    # Extract the objective function and the sense
     sense = getSense(m)
     objective = getObjective(m)
 
     # Next, generate the function that will create the JuMP model
-    modelGen = createJuMPModelGenFunc(vars, sense, objective, constraints)
+    modelGen = createJuMPModelGenFunc(vars, sense, objective, constraints, syms_dict)
     JuMPModel = modelGen(solver)
     # Once the constraints are added, and the objective is set, solve the model
     TT = STDOUT

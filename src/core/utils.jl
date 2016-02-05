@@ -11,30 +11,16 @@ utils.jl
 Author: Fady Shoukry
 Date: 01/30/2016
 =#
-
-symReplace!(ex, s, v) = ex
-symReplace!(ex::Symbol, s, v) = s == ex ? v : ex
-function symReplace!(ex::Expr, s, v)
+function createSymsBlock{T<:Any}(modelname::Symbol, syms_dict::Dict{Symbol}{T})
     """
-    These methods allow us to substitute a single symbol (s) in an expression with
-    some value (v)
+    Return a dynamically generated block of code that, when evaluated, will
+    define variables for each key in syms_dict
     """
-    for i=1:length(ex.args)
-        ex.args[i] = symReplace!(ex.args[i], s, v)
+    blk = Expr(:block)
+    for (key,val) in syms_dict
+        push!(blk.args, :($key = $val))
     end
-    ex
-end
-
-function symReplaceAll!{T<:Any}(exprs::Array{Expr}, d::Dict{Symbol}{T})
-    """
-    Replace all symbols given in an a dictionary with their corresponding values
-    in an array of expressions
-    """
-    for ex in exprs
-        for (k, v) in d
-            symReplace!(ex, k, v)
-        end
-    end
+    blk
 end
 
 function createConstraintsBlock(modelname::Symbol, constraints::Array{Expr})
@@ -71,18 +57,20 @@ function createVarsBlock(modelname::Symbol, vars::Array{Expr})
     blk
 end
 
-function createJuMPModelGenFunc(vars::Array{Expr}, sense::Symbol, 
-    objective::Expr, constraints::Array{Expr})
+function createJuMPModelGenFunc{T<:Any}(vars::Array{Expr}, sense::Symbol, 
+    objective::Expr, constraints::Array{Expr}, syms_dict::Dict{Symbol}{T})
     """
     Dynamically generate and return an anonymous function that creates 
     and returns the final JuMP model
     """
     model_sym = :model
+    syms_blk = createSymsBlock(model_sym, syms_dict)
     objective_ex = :(JuMP.@setObjective($model_sym, $sense, $objective))
     vars_blk = createVarsBlock(model_sym, vars)
     constraints_blk = createConstraintsBlock(model_sym, constraints)
     @eval function (solver)
         $model_sym = JuMP.Model(solver = solver)
+        $syms_blk
         $vars_blk
         $objective_ex
         $constraints_blk
