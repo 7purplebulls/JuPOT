@@ -37,7 +37,7 @@ type AssetsCollection{T1<:Real, T2<:AbstractString}
         n_names = size(names, 1)
         # Make sure the size of the inputs match
         if n_cov != n_ret 
-            error("Covariance matrix size ($n_cov) and the length of
+            error("Covariance matrix size ($n_cov x $n_cov) and the length of
             returns ($n_ret) must be equal")
         elseif n_ret != n_names 
             error("length of names ($n_names) and the length of

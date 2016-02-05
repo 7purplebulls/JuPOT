@@ -54,13 +54,13 @@ type SimpleMVO{R<:Real, S<:AbstractString} <: AbstractModel
 end
 
 function Base.show(io::IO, m::SimpleMVO)
-    print(io, "\n Sense: $(m.sense) \n")
+    # print(io, "\n Sense: $(m.sense) \n")
     print(io, "\n Variables: \n")
     for vars in m.vars
         print(io, vars, "\n")
     end
 
-    print(io, "\n Objective Function: \n  $(m._objective) \n")
+    # print(io, "\n Objective Function: \n  $(m._objective) \n")
 
     print(io, "\n Constraints: \n")
 
@@ -87,9 +87,9 @@ function Base.show(io::IO, m::SimpleMVO)
 
     print(io, "\n\n")
 
-    print(io, def_constraint_df)
+    # print(io, def_constraint_df)
 
-    print(io, "\n\n")
+    # print(io, "\n\n")
 
     print(io, "\n Assets: \n $(m.assets) \n")
 
