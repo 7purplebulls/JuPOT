@@ -157,7 +157,9 @@ function setCoVarForAssetPair{T1<:Real, T2<:AbstractString}(
     end
 end
 
-getCovariance{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}) = assets.covariance::Matrix{T1}
+function getCovariance{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2})
+    return assets.covariance::Matrix{T1}
+end
 
 function setCovariance{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}, covariance::Matrix{T1})
     # Perform validation of the covariance matrix
@@ -176,10 +178,20 @@ function setCovariance{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1
     assets.covariance = covariance
 end
 
-getReturns{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}) = assets.returns::Vector{T1}
+function getReturns{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}) 
+    return assets.returns::Vector{T1}
+end
 
 function setReturns{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}, returns::Vector{T1})
     assets.returns = returns
+end
+
+function getNames{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2})
+    return assets.names::Vector{T2}
+end
+
+function setNames{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}, names::Vector{T2})
+    assets.names = names
 end
 
 function Base.show(io::IO, a::AssetsCollection)
