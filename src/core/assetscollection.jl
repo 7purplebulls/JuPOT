@@ -209,5 +209,5 @@ end
 function getAssetAndReturnsFromCSV(filepath::AbstractString)
     asset_table = DataFrames.readtable(filepath, header=false)
     #TODO: Change this to be parametric?
-    return convert(Vector{AbstractString}, asset_table[1]), convert(Vector{Float64}, asset_table[2])
+    return vec(convert(Vector{ASCIIString}, asset_table[1])), vec(convert(Vector{Float64}, asset_table[2]))
 end

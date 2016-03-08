@@ -79,7 +79,7 @@ function optimize(m::AbstractModel, syms_dict=Dict{Symbol,Any}()::Dict, solver=J
 
 
     # return the weights
-    m.objVal
-    m.weights
+
+    return m.objVal, m.weights
 
 end
