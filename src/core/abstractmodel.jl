@@ -82,4 +82,6 @@ function optimize(m::AbstractModel, syms_dict=Dict{Symbol,Any}()::Dict, solver=J
 
     return m.objVal, m.weights
 
+    #TODO: Change it to have more gettters and setters?
+
 end
