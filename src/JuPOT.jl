@@ -8,7 +8,7 @@ export AbstractModel, optimize, AssetsCollection, SimpleMVO, RobustMVO,
 getAssetAndReturnsFromCSV, getReturns, setReturns, getCovariance, getCoVarForAssetPair,
 getVarForAsset, getReturnForAsset, 
 setReturns, setCovariance, setCoVarForAssetPair,
-setVarForAsset, setReturnForAsset, getNames, setNames
+setVarForAsset, setReturnForAsset, getNames, setNames, exportModelResultsToCSV
 
 include("core/utils.jl")
 include("core/assetscollection.jl")

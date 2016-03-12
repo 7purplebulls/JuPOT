@@ -4,7 +4,7 @@ SimpleMVO
     Mean-Variance Optimization Model
 
 
-Author: Azamat Berdyshev
+Author: Azamat Berdyshev, Shen Wang
 Date: 01/30/2016
 =#
 
@@ -92,7 +92,6 @@ function Base.show(io::IO, m::SimpleMVO)
     # print(io, "\n\n")
 
     print(io, "\n Assets: \n $(m.assets) \n")
-
 
 end
 
