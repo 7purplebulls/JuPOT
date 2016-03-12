@@ -109,9 +109,11 @@ function setVarForAsset{T1<:Real, T2<:AbstractString}(
     if idx == 0
         error("The asset collection has no asset named $name")
     end
+    saved_value = assets.covariance[idx, idx]
     assets.covariance[idx, idx] = value
     # Check to see if the positive semi-definitiveness has been violated
     if !isposdef(assets.covariance)
+        assets.covariance[idx, idx] = saved_value
         error("The updated covariance matrix is no longer positive
         semi-definite")
     end
@@ -148,10 +150,13 @@ function setCoVarForAssetPair{T1<:Real, T2<:AbstractString}(
     elseif idx_2 == 0
         error("The asset collection has no asset named $asset2")
     end
+    saved_value = assets.covariance[idx_1, idx_2]
     assets.covariance[idx_1, idx_2] = value
     assets.covariance[idx_2, idx_1] = value
     # Check to see if the positive semi-definitiveness has been violated
     if !isposdef(assets.covariance)
+        assets.covariance[idx_1, idx_2] = saved_value
+        assets.covariance[idx_2, idx_1] = saved_value
         error("The updated covariance matrix is no longer positive
         semi-definite")
     end
@@ -208,6 +213,5 @@ end
 
 function getAssetAndReturnsFromCSV(filepath::AbstractString)
     asset_table = DataFrames.readtable(filepath, header=false)
-    #TODO: Change this to be parametric?
     return vec(convert(Vector{ASCIIString}, asset_table[1])), vec(convert(Vector{Float64}, asset_table[2]))
 end
