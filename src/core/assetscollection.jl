@@ -9,7 +9,7 @@ AssetsCollection
     -------
     
 
-Author: Fady Shoukry, Azamat Berdyshev
+Author: Fady Shoukry, Azamat Berdyshev, Shen Wang
 Date: 01/23/2016
 =#
 
@@ -202,7 +202,7 @@ end
 function Base.show(io::IO, a::AssetsCollection)
 
     a_length = length(a.names)
-    a_df = DataFrames.DataFrame(A = AbstractString[], B = Real[])
+    a_df = DataFrames.DataFrame(Names = AbstractString[], Expected_Returns = Real[])
 
     for i = 1:a_length
         push!(a_df, [a.names[i], a.returns[i]])
