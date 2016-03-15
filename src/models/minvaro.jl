@@ -1,5 +1,5 @@
 #=
-MinVar
+MinVarO
 =========
     Minimum-Variance Optimization Model
 
@@ -8,7 +8,7 @@ Author: Azamat Berdyshev
 Date: 15/03/2016
 =#
 
-type MinVar{R<:Real, S<:AbstractString} <: AbstractModel
+type MinVarO{R<:Real, S<:AbstractString} <: AbstractModel
     sense::Symbol
     vars::Vector{Expr}
     _objective::Expr
@@ -20,7 +20,7 @@ type MinVar{R<:Real, S<:AbstractString} <: AbstractModel
     status::Symbol
 
     # Inner constructor
-    function MinVar(assets::AssetsCollection{R, S},
+    function MinVarO(assets::AssetsCollection{R, S},
                     constraints::Dict{Symbol,Expr}=Dict{Symbol,Expr}(),
                     short_sale::Bool=false)
 
@@ -52,10 +52,10 @@ end
 
 
 # Outer constructor
-MinVar{R<:Real, S<:AbstractString}(
+MinVarO{R<:Real, S<:AbstractString}(
             assets::AssetsCollection{R, S},
             constraints=Dict{Symbol,Expr}()::Dict{Symbol,Expr};
-            short_sale=false::Bool) = MinVar{R, S}(
+            short_sale=false::Bool) = MinVarO{R, S}(
                                                 assets,
                                                 constraints,
                                                 short_sale)
