@@ -53,47 +53,6 @@ type SimpleMVO{R<:Real, S<:AbstractString} <: AbstractModel
     end
 end
 
-function Base.show(io::IO, m::SimpleMVO)
-    # print(io, "\n Sense: $(m.sense) \n")
-    print(io, "\n Variables: \n")
-    for vars in m.vars
-        print(io, vars, "\n")
-    end
-
-    # print(io, "\n Objective Function: \n  $(m._objective) \n")
-
-    print(io, "\n Constraints: \n")
-
-    constraint_key_array = collect(keys(m.constraints))
-    constraint_value_array = collect(values(m.constraints))
-    constraint_length = length(constraint_key_array)
-    constraint_df = DataFrames.DataFrame(Keys = Symbol[], Constraint = Expr[])
-
-
-    def_constraint_df = DataFrames.DataFrame(Default = AbstractString[], Constraint = Expr[])
-
-    default_constraints_value = m._default_constraints
-    default_constraints_length = length(default_constraints_value)
-
-    for i = 1:default_constraints_length
-        push!(def_constraint_df, ["default", default_constraints_value[i]])
-    end
-
-    for i = 1:constraint_length
-        push!(constraint_df, [constraint_key_array[i], constraint_value_array[i]])
-    end
-
-    print(io, constraint_df)
-
-    print(io, "\n\n")
-
-    # print(io, def_constraint_df)
-
-    # print(io, "\n\n")
-
-    print(io, "\n Assets: \n $(m.assets) \n")
-
-end
 
 # Outer constructor
 SimpleMVO{R<:Real, S<:AbstractString}(
