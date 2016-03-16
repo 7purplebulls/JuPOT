@@ -10,7 +10,7 @@ Date: 15/03/2016
 
 type CVaRO{R<:Real, S<:AbstractString} <: AbstractModel
     sense::Symbol
-    vars::Vector{Expr}
+    vars::Vector
     _objective::Expr
     _default_constraints::Vector{Expr}
     constraints::Dict{Symbol,Expr}
