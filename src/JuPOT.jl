@@ -13,7 +13,9 @@ setVarForAsset, setReturnForAsset, getNames, setNames, exportModelResultsToCSV
 include("core/utils.jl")
 include("core/assetscollection.jl")
 include("core/abstractmodel.jl")
+
 include("models/simplemvo.jl")
 include("models/robustmvo.jl")
-
+include("models/minvaro.jl")
+include("models/cvaro.jl")
 end
