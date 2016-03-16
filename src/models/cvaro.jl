@@ -26,12 +26,12 @@ type CVaRO{R<:Real, S<:AbstractString} <: AbstractModel
                    α::R,
                    short_sale::Bool)
 
-    # n - number of assets
-    # k - number of Monte-Carlo Scenarios
-    # α - CVaR level
-    # losses - Monte-Carlo sample of losses for every asset in every scenario
+        # n - number of assets
+        # k - number of Monte-Carlo Scenarios
+        # α - CVaR level
+        # losses - Monte-Carlo sample of losses for every asset in every scenario
 
-        (k, n) = length(assets)
+        (k, n) = length(losses)
 
         # if no short sale => add corresponding constraint
         if short_sale
