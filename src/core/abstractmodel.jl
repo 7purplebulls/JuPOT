@@ -3,11 +3,11 @@ AbstractModel
 =============
     An abstract financial optimization model, all concrete models in this package
     (including the customizable models) are children of this type.
-    
+
     Methods:
     -------
     get_obj_fun(m) - retrieves the objective function of the model
-    
+
 
 Author: Fady Shoukry
 Date: 01/23/2016
