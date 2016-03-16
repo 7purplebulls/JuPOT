@@ -2,8 +2,6 @@
 CVaRO
 =========
     CVaR Optimization Model
-
-
 Author: Azamat Berdyshev
 Date: 15/03/2016
 =#
@@ -31,21 +29,27 @@ type CVaRO{R<:Real, S<:AbstractString} <: AbstractModel
         # α - CVaR level
         # losses - Monte-Carlo sample of losses for every asset in every scenario
 
-        (k, n) = size(losses)
+        (n,k) = size(losses)
+        vars = Union{Expr, Symbol}[]
 
         # if no short sale => add corresponding constraint
         if short_sale
-            vars = [:(w[1:$n])]
+            push!(vars, :(w[1:$n]))
         else
-            vars = [:(w[1:$n] >= 0)]
+            push!(vars, :(w[1:$n] >= 0))
         end
         push!(vars, :(y[1:$k] >= 0))
         push!(vars, :q)
 
         _objective = :(q + sum(y)/($k*(1-$α)))
 
-        _default_constraints = [:($losses*w - q*ones($k) - y .≤ 0),
-                                :(dot(ones($n),w) == 1)]
+        _default_constraints = [:(($(losses[:,i])'w)[1] - q - y[$i] <= 0) for i in 1:k]
+        push!(_default_constraints, :((ones($n)'w)[1] == 1))
+
+        # _default_constraints = [:(dot($(losses[:,i]), w) - q - y[$i] <= 0) for i in 1:k]
+
+        # _default_constraints = [:($losses*w - q*ones($k) - y .≤ 0),
+                                # :(dot(ones($n),w) == 1)]
 
         new(:Min,
             vars,
