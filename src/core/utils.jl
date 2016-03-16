@@ -39,28 +39,28 @@ function createConstraintsBlock(modelname::Symbol, constraints::Array{Expr})
                                 JuMP.@addNLConstraint($modelname, $expr)
                                 warn($str, " is a non-linear constraint")
                             end
-                        end)   
+                        end)
     end
     blk
 end
 
-function createVarsBlock(modelname::Symbol, vars::Array{Expr})
+function createVarsBlock(modelname::Symbol, vars::Vector)
     """
     Return a dynamically generated block of code that, when evaluated, will add
     all the variables to the model required
     """
     blk = Expr(:block)
     # First replace all symbols
-    for var in vars 
-        push!(blk.args, :(JuMP.@defVar($modelname, $var))) 
+    for var in vars
+        push!(blk.args, :(JuMP.@defVar($modelname, $var)))
     end
     blk
 end
 
-function createJuMPModelGenFunc{T<:Any}(vars::Array{Expr}, sense::Symbol, 
+function createJuMPModelGenFunc{T<:Any}(vars::Vector, sense::Symbol,
     objective::Expr, constraints::Array{Expr}, syms_dict::Dict{Symbol}{T})
     """
-    Dynamically generate and return an anonymous function that creates 
+    Dynamically generate and return an anonymous function that creates
     and returns the final JuMP model
     """
     model_sym = :model
@@ -77,4 +77,3 @@ function createJuMPModelGenFunc{T<:Any}(vars::Array{Expr}, sense::Symbol,
         $model_sym
     end
 end
-
