@@ -4,10 +4,10 @@ AssetsCollection
 ================
     A container to hold all information regarding the collection of assests to
     be optimized
-    
+
     Methods:
     -------
-    
+
 
 Author: Fady Shoukry, Azamat Berdyshev, Shen Wang
 Date: 01/23/2016
@@ -15,7 +15,7 @@ Date: 01/23/2016
 
 type AssetsCollection{T1<:Real, T2<:AbstractString}
     # NOTE: All arrays in the collection are expected to have matching indices
-    
+
     # A list of indicator strings for the assets in the collection
     names::Vector{T2}
     # A list of the expected returns of the assets in the collection
@@ -36,10 +36,10 @@ type AssetsCollection{T1<:Real, T2<:AbstractString}
         n_ret = size(returns, 1)
         n_names = size(names, 1)
         # Make sure the size of the inputs match
-        if n_cov != n_ret 
+        if n_cov != n_ret
             error("Covariance matrix size ($n_cov x $n_cov) and the length of
             returns ($n_ret) must be equal")
-        elseif n_ret != n_names 
+        elseif n_ret != n_names
             error("length of names ($n_names) and the length of
             returns ($n_ret) must be equal")
         end
@@ -49,7 +49,7 @@ type AssetsCollection{T1<:Real, T2<:AbstractString}
 end
 
 AssetsCollection{T1<:Real, T2<:AbstractString}(names::Vector{T2},
-    returns::Vector{T1}, covariance::Matrix{T1}) = 
+    returns::Vector{T1}, covariance::Matrix{T1}) =
     AssetsCollection{T1, T2}(names, returns, covariance)
 
 function length{T1<:Real,
@@ -183,7 +183,7 @@ function setCovariance{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1
     assets.covariance = covariance
 end
 
-function getReturns{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2}) 
+function getReturns{T1<:Real, T2<:AbstractString}(assets::AssetsCollection{T1, T2})
     return assets.returns::Vector{T1}
 end
 
