@@ -69,7 +69,7 @@ function optimize(m::AbstractModel, syms_dict=Dict{Symbol,Any}()::Dict, solver=J
     JuMPModel = modelGen(solver)
     # Once the constraints are added, and the objective is set, solve the model
     TT = STDOUT
-    redirect_stdout()
+    #redirect_stdout()
     m.status = JuMP.solve(JuMPModel)
     redirect_stdout(TT)
 
