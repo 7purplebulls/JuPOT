@@ -53,7 +53,7 @@ function getVariables(m::AbstractModel)
     m.vars
 end
 
-function optimize(m::AbstractModel, syms_dict=Dict{Symbol,Any}()::Dict, solver=JuMP.UnsetSolver())
+function optimize(m::AbstractModel, syms_dict=Dict{Symbol,Any}()::Dict; solver=JuMP.UnsetSolver())
     """
     Return the optimized weights of the model generated as an array of floats
     """
