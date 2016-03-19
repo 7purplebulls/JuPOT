@@ -1,8 +1,8 @@
 .. _stdlib-import_export:
 
-*****************************
-Import and Export I/O StdLib
-*****************************
+*************************
+Import and Export I/O API
+*************************
 
 
 Basic functions

@@ -1,8 +1,8 @@
 .. _stdlib-constraints:
 
-***********************
-Abstract Models StdLib
-***********************
+********************
+Abstract Models API
+********************
 
 Constructors
 ------------

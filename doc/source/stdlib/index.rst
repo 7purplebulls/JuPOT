@@ -1,8 +1,8 @@
 .. _stdlib-index:
 
-##################
- The JuPOT Library
-##################
+##############
+ The JuPOT API
+##############
 
 .. toctree::
    :maxdepth: 1

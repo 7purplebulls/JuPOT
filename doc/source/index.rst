@@ -49,9 +49,9 @@ Manual
 
 .. _stdlib:
 
-##################
-Standard Library
-##################
+#########
+JuPOT API
+#########
 
 .. toctree::
    :maxdepth: 2
