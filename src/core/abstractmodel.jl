@@ -9,7 +9,7 @@ AbstractModel
     get_obj_fun(m) - retrieves the objective function of the model
 
 
-Author: Fady Shoukry
+Author: Fady Shoukry, Shen Wang
 Date: 01/23/2016
 =#
 
@@ -54,7 +54,6 @@ function getVariables(m::AbstractModel)
 end
 
 function optimize(m::AbstractModel, syms_dict=Dict{Symbol,Any}()::Dict, solver=JuMP.UnsetSolver())
-    #TODO: Make this Parametrized?
     """
     Return the optimized weights of the model generated as an array of floats
     """
@@ -81,24 +80,6 @@ function optimize(m::AbstractModel, syms_dict=Dict{Symbol,Any}()::Dict, solver=J
     # return the weights
 
     return m.objVal, m.weights
-end
-
-#TODO: Select one of the two
-
-function exportModelObjValAndWeightsToCSV(m::AbstractModel, path::AbstractString)
-
-    if  any(isnan,m.weights) || any(isnan, m.objVal)
-        #Weights and Obj Val is still NaN, user has not run optimize properly
-        warn("Model has not been Optimized")
-        return false
-    end
-
-    df = DataFrames.DataFrame()
-    df[:ObjValue_And_Weights] = vcat(m.objVal, m.weights)
-
-    DataFrames.writetable(path, df)
-    return true
-
 end
 
 function exportModelResultsToCSV{R<:Real}(result::Tuple{R,Array{R,1}}, path::AbstractString)
