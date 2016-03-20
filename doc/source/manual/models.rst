@@ -77,12 +77,10 @@ Robust Mean Variance Optimization
 
 :func:`Robust MVO <RobustMVO>`
 
-.. math::
-
 |	:math:`min` :math:`w^\top\Sigma w`
 |	subject to :math:`\lVert{\Theta^{\frac{1}{2}}w}\rVert \leq \sqrt{\epsilon}` or equivalently :math:`w^\top\Theta w \leq\epsilon`
-|	:math:`\mu^\top w \geq r `
-|	:math:`\mathbf{1}^\top w = 1 `
+|	:math:`\mu^\top w \geq r`
+|	:math:`\mathbf{1}^\top w = 1`
 |	:math:`w\in\mathcal{F}`
 
 RobustMVO(Asset_Group(:math:`\Sigma, \mu`), :math:`r`, constraints, :math:`\Theta`, :math:`\epsilon`, short_sale)
