@@ -106,7 +106,7 @@ Conditional Value at Risk (CVaR) Optimization
 
 :func:`CVaR Optimization <CVaRO>`
 
-|	:math:`\minimize_{w}` :math:`q + \frac{\mathbf{1}^\top y}{N(1 - \alpha)}`
+|	:math:`min` :math:`q + \frac{\mathbf{1}^\top y}{N(1 - \alpha)}`
 |	subject to :math:`L^\top w - q \mathbf{1} - y \preceq 0`
 |	:math:`y \succeq 0`
 |	:math:`w\in\mathcal{F}`
@@ -124,7 +124,7 @@ Variable Name   Description
 Asset Group     Set of Asset returns and covarianced inputtedf or analysis         
 Losses          Matrix of samples of the portfolio losses, where each row represents a sample. Typically obtained by Monte-Carlo sampling                                                                  
 Constraints     Any non-model specific constraints to be used in optimization       
-Alpha                                                                              
+Alpha           Confidence level at which CVaR is optimized. This corresponds to the area of the left tale of the losses distribution                                                                   
 Short_Sale      A boolean indicating whether or not short selling will be allowed 
 ==============  ==================================================================
 
