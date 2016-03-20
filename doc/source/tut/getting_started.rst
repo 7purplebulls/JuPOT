@@ -18,7 +18,9 @@ not installed a solver for your Julia installation you can install one
 by first opening a Julia terminal and then typing the following command
 which will add the CLP solver:
 
-julia> Pkg.add("Clp")
+.. code:: julia
+
+	Pkg.add("Clp")
 
 CLP is a free Open Source Solver that can be found here
 https://projects.coin-or.org/Clp.
