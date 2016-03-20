@@ -79,7 +79,7 @@ Robust Mean Variance Optimization
 
 .. math::
 
-|	:math:`min \quad & w^\top\Sigma w`
+|	:math:`min` :math:`w^\top\Sigma w`
 |	subject to :math:`\lVert{\Theta^{\frac{1}{2}}w}\rVert \leq \sqrt{\epsilon}` or equivalently :math:`w^\top\Theta w \leq\epsilon`
 |	:math:`\mu^\top w \geq r `
 |	:math:`\mathbf{1}^\top w = 1 `
