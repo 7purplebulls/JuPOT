@@ -26,13 +26,9 @@ Minimum-Variance Optimization
 
 :func:`Minimum Variance Optimization <MinVarO>`
 
-|	:math:`min w^\top\Sigma w`
-|	subject to :math:` & \mathbf{1}^\top w = 1`
-|	:math:`& w\in\mathcal{F}`
-
-|	:math:`\minimize_{w} \quad & w^\top\Sigma w`
-|	subject to :math:`\quad & \mathbf{1}^\top w = 1`
-|	:math:`& w\in\mathcal{F}`
+|	:math:`min` :math:`w^\top\Sigma w`
+|	subject to :math:` \mathbf{1}^\top w = 1`
+|	:math:`w\in\mathcal{F}`
 
 MinVarO(Asset_Group(:math:`\Sigma, \mu`), constraints, short_sale)
 
@@ -55,10 +51,10 @@ Simple Mean Variance Optimization
 
 :func:`Simple MVO <SimpleMVO>`
 
-|	 :math:`\minimize_{w} \quad & w^\top\Sigma w`
-|	 subject to :math:`\quad & \mu^\top w \geq r`
-|	 :math:`& \mathbf{1}^\top w = 1`
-|	 :math:`& w\in\mathcal{F}`
+|	 :math:`min \quad` :math:`w^\top\Sigma w`
+|	 subject to :math:`\quad` :math:`\mu^\top w \geq r`
+|	 :math:`\mathbf{1}^\top w = 1`
+|	 :math:`w\in\mathcal{F}`
 
 SimpleMVO(Asset_Group(:math:`\Sigma, \mu`), :math:`r`, constraints, short_sale)}
 
