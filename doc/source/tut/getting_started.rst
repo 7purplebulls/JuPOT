@@ -23,12 +23,23 @@ julia> Pkg.add("Clp")
 CLP is a free Open Source Solver that can be found here
 https://projects.coin-or.org/Clp.
 
-2. Setting the Path
+2. Automatically Installing Package
 
-JuPot is not yet setup in the Julia package path and therefore requires
-an extra step when importing the package into a new environment. The
-first step requires a command that adds the path of the JuPot package
-into the current environment shown below.
+JuPOT can be installed when you open Julia and type in the command:
+
+.. code:: julia
+
+	Pkg.clone("git://github.com/7purplebulls/JuPOT")
+
+Which will install JuPOT and all dependencies.
+You can skip 3. Manually Installing Package.
+
+3. Manually Installing Package
+
+If you wanted to manually install the code. You download the git repository
+`https://github.com/7purplebulls/JuPOT`_ . Then you will requires a command 
+that adds the path of the JuPot package into the current environment 
+as shown below.
 
 .. code:: julia
 
@@ -38,7 +49,7 @@ into the current environment shown below.
 	# For Mac Users
 	# push!(LOAD_PATH, "/Path/To/JuPOT/")
 
-3. Importing the Package
+4. Importing the Package
 
 Once the path has been set correctly you can now test to see if you can
 import JuPot using the following Julia Command,
