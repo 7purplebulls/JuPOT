@@ -26,7 +26,7 @@ Minimum-Variance Optimization
 
 :func:`Minimum Variance Optimization <MinVarO>`
 
-|	:math:`\minimize` :math:`w^\top\Sigma w`
+|	:math:`\min` :math:`w^\top\Sigma w`
 |	subject to :math:`\mathbf{1}^\top w = 1`
 |	:math:`w\in\mathcal{F}`
 
