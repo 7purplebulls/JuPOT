@@ -4,6 +4,29 @@
 Models
 ******
 
+.. raw:: latex
+
+	\section {Mathematical formulations of the models}
+	This section describes the optimization models that are planned to be shipped with the platform. The models to be implemented are defined in their mathematical notation.
+
+	\subsection{Nomenclature}
+	\begin{tabular}{ll}
+		$\mathbf{1}$ & vector of all ones \\
+		$n$ & number of assets in the \texttt{Asset\_Group} \\
+		$k$ & number of scenarios \\
+		$\Sigma\in\mathbb{R}^{n\times n}$ & covariance matrix of the \texttt{Asset\_Group} \\
+		$\mu\in\mathbb{R}^n$ & vector of expected returns of the \texttt{Asset\_Group} \\
+		$r\in\mathbb{R}$ & target return \\
+		$w\in\mathbb{R}^n$ & weights vector to be found \\
+		$\Theta\in\mathbb{R}^{n\times n}$ & ellipsoidal uncertainty set of true expected returns \\
+		$\epsilon\in\mathbb{R}$ & square of a size of uncertainty set \\
+		$L\in\mathbb{R}^{n\times k}$ & matrix of assets' losses where each row corresponds to the Monte-Carlo scenario \\
+		$\alpha\in (0,\, 0.5)$ & area of the right tale of the losses distribution at which CVaR is computed \\
+		$\mathcal{F}\subseteq \mathbb{R}^n$ & feasible space defined by inputs \texttt{constraints} and \texttt{short\_sale} \\
+		$y\in\mathbb{R}^k,\; q\in\mathbb{R}$ & auxiliary decision variables
+	\end{tabular}
+
+
 Simple Mean Variance Optimization
 ----------------------------------
 
@@ -12,6 +35,10 @@ Simple Mean Variance Optimization
 The simple mean variance optmization is a technique to optimally allocate investments between assets. The gaol is globally reduce risk on investment at a specified expected return based on the covariance between asset groups. In a Simple MVO, the expect inputs are, **expected return of assets** and **correlation matrix between assets**. Given this, the optimization algorith will be able to output an optimal portfolio weight. 
 
 In previous manuals you will have already learned about creating assets groups as well as constraint group. These groups can now be used to create a Simple MVO with the follow code.
+
+.. raw:: latex 
+
+
 
 .. code-block:: julia
 
