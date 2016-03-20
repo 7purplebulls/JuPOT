@@ -21,15 +21,42 @@ This section describes the optimization models that are planned to be shipped wi
 |	:math:`y\in\mathbb{R}^k,\; q\in\mathbb{R}` & auxiliary decision variables
 	
 
+Minimum-Variance Optimization
+----------------------------------
+
+:func:`Minimum Variance Optimization <MinVarO>`
+
+|	:math:`\minimize_{w} \quad & w^\top\Sigma w`
+|	subject to :math:`\quad & \mathbf{1}^\top w = 1`
+|	:math:`& w\in\mathcal{F}`
+
+MinVarO(Asset_Group(:math:`\Sigma, \mu`), constraints, short_sale)
+
+.. code-block:: julia
+
+	mvar = MinVarO(Asset_Group, constraints, short_sale)
+	optimize(mvar, parameters) 
+
+==============  ================================================================== 
+Variable Name   Description                                                      
+==============  ==================================================================
+Asset Group     Set of Asset returns and covarianced inputtedf or analysis        
+Constraints     Any non-model specific constraints to be used in optimization         
+Short_Sale      A boolean indicating whether or not short selling will be allowed 
+==============  ==================================================================
+
+
 Simple Mean Variance Optimization
 ----------------------------------
 
 :func:`Simple MVO <SimpleMVO>`
 
-The simple mean variance optmization is a technique to optimally allocate investments between assets. The gaol is globally reduce risk on investment at a specified expected return based on the covariance between asset groups. In a Simple MVO, the expect inputs are, **expected return of assets** and **correlation matrix between assets**. Given this, the optimization algorith will be able to output an optimal portfolio weight. 
+|	 :math:`\minimize_{w} \quad & w^\top\Sigma w`
+|	 subject to :math:`\quad & \mu^\top w \geq r`
+|	 :math:`& \mathbf{1}^\top w = 1`
+|	 :math:`& w\in\mathcal{F}`
 
-In previous manuals you will have already learned about creating assets groups as well as constraint group. These groups can now be used to create a Simple MVO with the follow code.
-
+SimpleMVO(Asset_Group(:math:`\Sigma, \mu`), :math:`r`, constraints, short_sale)}
 
 .. code-block:: julia
 
@@ -50,7 +77,13 @@ Robust Mean Variance Optimization
 
 :func:`Robust MVO <RobustMVO>`
 
-Other methods of optimization such as Robust Mean Variance Optimization can also be applied onto asset and constraint groups.
+|	:math:`\minimize_{w} \quad & w^\top\Sigma w`
+|	subject to :math:`\quad & \lVert{\Theta^{\frac{1}{2}}w}\rVert \leq \sqrt{\epsilon} & \quad \text{or equivalently:\;\;} w^\top\Theta w \leq\epsilon`
+|	:math:`& \mu^\top w \geq r `
+|	:math:`& \mathbf{1}^\top w = 1 `
+|	:math:`& w\in\mathcal{F}`
+
+RobustMVO(Asset_Group(:math:`\Sigma, \mu`), :math:`r`, constraints, :math:`\Theta`, :math:`\epsilon`, short_sale)
 
 .. code-block:: julia
 
@@ -68,34 +101,17 @@ Uncertainty_Set_Size
 Short_Sale            A boolean indicating whether or not short selling will be allowed 
 ====================  ==================================================================
 
-.. comment
-
-	TODO: Uncertainty_Set stuff
-
-Minimum-Variance Optimization
-----------------------------------
-
-:func:`Minimum Variance Optimization <MinVarO>`
-
-In minimum-variance optmization, the goal is to minize the risk of the portfolio. 
-
-.. code-block:: julia
-
-	mvar = MinVarO(Asset_Group, constraints, short_sale)
-	optimize(mvar, parameters) 
-
-==============  ================================================================== 
-Variable Name   Description                                                      
-==============  ==================================================================
-Asset Group     Set of Asset returns and covarianced inputtedf or analysis        
-Constraints     Any non-model specific constraints to be used in optimization         
-Short_Sale      A boolean indicating whether or not short selling will be allowed 
-==============  ==================================================================
-
 Conditional Value at Risk (CVaR) Optimization
 ----------------------------------------------
 
 :func:`CVaR Optimization <CVaRO>`
+
+|	:math:`\minimize_{w,y,q} \quad & q + \frac{\mathbf{1}^\top y}{N(1 - \alpha)}`
+|	subject to :math:`\quad & L^\top w - q \mathbf{1} - y \preceq 0`
+|	:math:`& y \succeq 0`
+|	:math:`& w\in\mathcal{F}`
+
+CVaRO(Asset_Group(:math:`\Sigma, \mu`), :math:`L`, constraints, :math:`\alpha`, short_sale)
 
 .. code-block:: julia
 
