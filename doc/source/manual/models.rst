@@ -96,8 +96,8 @@ Variable Name         Description
 Asset Group           Set of Asset returns and covarianced inputtedf or analysis         
 Target_Return         Expected target return of portfolio post optimization                
 Constraints           Any non-model specific constraints to be used in optimization      
-Uncertainty_Set                                                                         
-Uncertainty_Set_Size                                                                   
+Uncertainty_Set       Uncertainties in the parameter estimates (:math:`\Sigma` and :math:`\mu`) associated with each asset in the asset group. Typically taken to be an individual variance of each asset                                                                  
+Uncertainty_Set_Size  maximum allowable exposure of the whole portfolio to the uncertainty associated with the parameter estimates (:math:`\Sigma` and :math:`\mu`)                                                                 
 Short_Sale            A boolean indicating whether or not short selling will be allowed 
 ====================  ==================================================================
 
@@ -106,7 +106,7 @@ Conditional Value at Risk (CVaR) Optimization
 
 :func:`CVaR Optimization <CVaRO>`
 
-|	:math:`min` :math:`q + \frac{\mathbf{1}^\top y}{N(1 - \alpha)}`
+|	:math:`\minimize_{w}` :math:`q + \frac{\mathbf{1}^\top y}{N(1 - \alpha)}`
 |	subject to :math:`L^\top w - q \mathbf{1} - y \preceq 0`
 |	:math:`y \succeq 0`
 |	:math:`w\in\mathcal{F}`
@@ -122,7 +122,7 @@ CVaRO(Asset_Group(:math:`\Sigma, \mu`), :math:`L`, constraints, :math:`\alpha`, 
 Variable Name   Description                                                     
 ==============  ==================================================================
 Asset Group     Set of Asset returns and covarianced inputtedf or analysis         
-Losses                                                                            
+Losses          Matrix of samples of the portfolio losses, where each row represents a sample. Typically obtained by Monte-Carlo sampling                                                                  
 Constraints     Any non-model specific constraints to be used in optimization       
 Alpha                                                                              
 Short_Sale      A boolean indicating whether or not short selling will be allowed 
