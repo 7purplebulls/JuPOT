@@ -1,11 +1,8 @@
 .. _tut-getting_started:
 
-
 ****************
 Getting Started
 ****************
-
-
 
 Importing JuPot
 ---------------
@@ -47,9 +44,11 @@ as shown below.
 
 	# For Windows Users
 	push!(LOAD_PATH, "$(homedir())/Path/To/JuPOT/")
-	
+
+.. code:: julia
+
 	# For Mac Users
-	# push!(LOAD_PATH, "/Path/To/JuPOT/")
+	push!(LOAD_PATH, "/Path/To/JuPOT/")
 
 4. Importing the Package
 
