@@ -26,7 +26,7 @@ Minimum-Variance Optimization
 
 :func:`Minimum Variance Optimization <MinVarO>`
 
-|	:math:`min` :math:`w^\top\Sigma w`
+|	:math:`\min` :math:`w^\top\Sigma w`
 |	subject to :math:`\mathbf{1}^\top w = 1`
 |	:math:`w\in\mathcal{F}`
 
@@ -51,7 +51,7 @@ Simple Mean Variance Optimization
 
 :func:`Simple MVO <SimpleMVO>`
 
-|	 :math:`min` :math:`w^\top\Sigma w`
+|	 :math:`\min` :math:`w^\top\Sigma w`
 |	 subject to :math:`\mu^\top w \geq r`
 |	 :math:`\mathbf{1}^\top w = 1`
 |	 :math:`w\in\mathcal{F}`
@@ -77,7 +77,7 @@ Robust Mean Variance Optimization
 
 :func:`Robust MVO <RobustMVO>`
 
-|	:math:`min` :math:`w^\top\Sigma w`
+|	:math:`\min` :math:`w^\top\Sigma w`
 |	subject to :math:`\lVert{\Theta^{\frac{1}{2}}w}\rVert \leq \sqrt{\epsilon}` or equivalently :math:`w^\top\Theta w \leq\epsilon`
 |	:math:`\mu^\top w \geq r`
 |	:math:`\mathbf{1}^\top w = 1`
@@ -106,7 +106,7 @@ Conditional Value at Risk (CVaR) Optimization
 
 :func:`CVaR Optimization <CVaRO>`
 
-|	:math:`min` :math:`q + \frac{\mathbf{1}^\top y}{N(1 - \alpha)}`
+|	:math:`\min` :math:`q + \frac{\mathbf{1}^\top y}{N(1 - \alpha)}`
 |	subject to :math:`L^\top w - q \mathbf{1} - y \preceq 0`
 |	:math:`y \succeq 0`
 |	:math:`w\in\mathcal{F}`
