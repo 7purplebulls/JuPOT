@@ -1,7 +1,7 @@
 .. _stdlib-asset:
 
 **********************
- AssetCollections API
+ AssetsCollection API
 **********************
 
 
