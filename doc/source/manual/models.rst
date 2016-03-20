@@ -51,8 +51,8 @@ Simple Mean Variance Optimization
 
 :func:`Simple MVO <SimpleMVO>`
 
-|	 :math:`min \quad` :math:`w^\top\Sigma w`
-|	 subject to :math:`\quad` :math:`\mu^\top w \geq r`
+|	 :math:`min` :math:`w^\top\Sigma w`
+|	 subject to :math:`\mu^\top w \geq r`
 |	 :math:`\mathbf{1}^\top w = 1`
 |	 :math:`w\in\mathcal{F}`
 
@@ -79,16 +79,11 @@ Robust Mean Variance Optimization
 
 .. math::
 
-	\minimize_{w,y,q} \quad & q + \frac{\mathbf{1}^\top y}{N(1 - \alpha)} \\
-	\text{subject to} \quad & L^\top w - q \mathbf{1} - y \preceq 0 \\
-	 & y \succeq 0 \\
-	 & w\in\mathcal{F}
-
 |	:math:`min \quad & w^\top\Sigma w`
-|	subject to :math:`\quad & \lVert{\Theta^{\frac{1}{2}}w}\rVert \leq \sqrt{\epsilon} & \quad \text{or equivalently:\;\;} w^\top\Theta w \leq\epsilon`
-|	:math:`& \mu^\top w \geq r `
-|	:math:`& \mathbf{1}^\top w = 1 `
-|	:math:`& w\in\mathcal{F}`
+|	subject to :math:`\lVert{\Theta^{\frac{1}{2}}w}\rVert \leq \sqrt{\epsilon}` or equivalently :math:`w^\top\Theta w \leq\epsilon`
+|	:math:`\mu^\top w \geq r `
+|	:math:`\mathbf{1}^\top w = 1 `
+|	:math:`w\in\mathcal{F}`
 
 RobustMVO(Asset_Group(:math:`\Sigma, \mu`), :math:`r`, constraints, :math:`\Theta`, :math:`\epsilon`, short_sale)
 
@@ -113,10 +108,10 @@ Conditional Value at Risk (CVaR) Optimization
 
 :func:`CVaR Optimization <CVaRO>`
 
-|	:math:`\minimize_{w,y,q} \quad & q + \frac{\mathbf{1}^\top y}{N(1 - \alpha)}`
-|	subject to :math:`\quad & L^\top w - q \mathbf{1} - y \preceq 0`
-|	:math:`& y \succeq 0`
-|	:math:`& w\in\mathcal{F}`
+|	:math:`min` :math:`q + \frac{\mathbf{1}^\top y}{N(1 - \alpha)}`
+|	subject to :math:`L^\top w - q \mathbf{1} - y \preceq 0`
+|	:math:`y \succeq 0`
+|	:math:`w\in\mathcal{F}`
 
 CVaRO(Asset_Group(:math:`\Sigma, \mu`), :math:`L`, constraints, :math:`\alpha`, short_sale)
 
