@@ -33,6 +33,7 @@ import sphinx_rtd_theme
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['sphinx.ext.mathjax',
+              'sphinx.ext.pngmath',
 			        'juliadoc.julia',
               'juliadoc.jldoctest',
               'juliadoc.jlhelp']

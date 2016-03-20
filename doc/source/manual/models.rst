@@ -27,7 +27,7 @@ Minimum-Variance Optimization
 :func:`Minimum Variance Optimization <MinVarO>`
 
 |	:math:`min` :math:`w^\top\Sigma w`
-|	subject to :math:` \mathbf{1}^\top w = 1`
+|	subject to :math:`\mathbf{1}^\top w = 1`
 |	:math:`w\in\mathcal{F}`
 
 MinVarO(Asset_Group(:math:`\Sigma, \mu`), constraints, short_sale)
@@ -77,7 +77,14 @@ Robust Mean Variance Optimization
 
 :func:`Robust MVO <RobustMVO>`
 
-|	:math:`\minimize_{w} \quad & w^\top\Sigma w`
+.. math::
+
+	\minimize_{w,y,q} \quad & q + \frac{\mathbf{1}^\top y}{N(1 - \alpha)} \\
+	\text{subject to} \quad & L^\top w - q \mathbf{1} - y \preceq 0 \\
+	 & y \succeq 0 \\
+	 & w\in\mathcal{F}
+
+|	:math:`min \quad & w^\top\Sigma w`
 |	subject to :math:`\quad & \lVert{\Theta^{\frac{1}{2}}w}\rVert \leq \sqrt{\epsilon} & \quad \text{or equivalently:\;\;} w^\top\Theta w \leq\epsilon`
 |	:math:`& \mu^\top w \geq r `
 |	:math:`& \mathbf{1}^\top w = 1 `
