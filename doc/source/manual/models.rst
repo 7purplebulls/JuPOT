@@ -95,11 +95,19 @@ Short_Sale      A boolean indicating whether or not short selling will be allowe
 ==============  ==================================================================
 
 
-Optimize Function
------------------
+Function Descriptions
+---------------------
 
-The :func:`optimize(M, parameters; solver=Default) <optimize>` function will optimize 
-the models above using a solver with the parameters.
+============================================================================  ============================================================================
+Function                                                                      Description
+============================================================================  ============================================================================
+:func:`optimize(M, parameters; solver=Default) <optimize>`					  Will optimize the model ``M`` with the ``parameters`` given using a ``solver`` 
+:func:`getDefaultConstraints(M) <getDefaultConstraints>`					  Return the default constraints of model ``M`` .
+:func:`getConstraints(M) <getConstraints>`									  Return the constraints as an array of expressions for model ``M`` .
+:func:`getObjective(M) <getObjective>`										  Return the objective function of model ``M`` as an Expr type.
+:func:`getSense(M) <getSense>`												  Return the Sense of the model ``M`` , Min or Max.
+:func:`getVariables(M) <getVariables>`										  Return the list of variables in the model ``M`` .
+============================================================================  ============================================================================
 
 To change solvers, refer to the :ref:`solver select <solver-sel>` tutorial.
 

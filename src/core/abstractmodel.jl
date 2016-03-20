@@ -24,7 +24,7 @@ end
 
 function getDefaultConstraints(m::AbstractModel)
     """
-    Return the default constraints of a given Model as a ConstraintsContainer
+    Return the default constraints of a given Model
     type
     """
     m._default_constraints
