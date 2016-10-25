@@ -19,8 +19,7 @@ which will add the CLP solver:
 
 	Pkg.add("Clp")
 
-CLP is a free Open Source Solver that can be found here
-https://projects.coin-or.org/Clp.
+CLP is a free Open Source Solver that can be found `here <https://projects.coin-or.org/Clp>`_.
 
 2. Automatically Installing Package
 
@@ -35,8 +34,7 @@ You can skip 3. Manually Installing Package.
 
 3. Manually Installing Package
 
-If you wanted to manually install the code. You download the git repository
-`https://github.com/7purplebulls/JuPOT`_ . Then you will requires a command 
+If you wanted to manually install the code. You download the git `repository <https://github.com/7purplebulls/JuPOT>`_. Then you will requires a command 
 that adds the path of the JuPot package into the current environment 
 as shown below.
 
